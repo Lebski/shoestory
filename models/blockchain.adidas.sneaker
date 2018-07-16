@@ -23,20 +23,33 @@ namespace blockchain.adidas.sneaker
 enum Gender {
   o FEMALE
   o MALE
+  o UNISEX
 }
-
 
 // What makes up a shoe
 concept ShoeAttributes {
-  o DateTime creationDate // Just month and year
+  o DateTime creationDate // Just month and year are read from NFC
   o String color
-  o String model
   o Gender forWhom
   o Integer sizeUS
   o Integer sizeUK optional
   o Integer sizeFR optional
   o Integer sizeJP optional
   o Integer sizeCHN optional
+  o Model model
+}
+
+// Each shoe's model
+concept Model {
+  o DateTime designedDate
+  o String name
+  o String designer
+}
+
+// Abstract
+abstract participant Company identified by companyId {
+  o String companyId
+  
 }
 
 // The asset that we keep track on the ledger
@@ -49,7 +62,7 @@ asset Sneaker identified by sneakerId {
 }
 
 // An abstract participant
-abstract participant User identified by name {
+abstract participant Person identified by name {
 //  o String email // optional, for later
   o String name
   o String lastname
@@ -57,7 +70,7 @@ abstract participant User identified by name {
 }
 
 // A shoe owner is a participant
-participant Owner extends User {
+participant Owner extends Person {
   o String sneakerId
 }
 
@@ -66,25 +79,11 @@ transaction ShoeReward {
   o Double newValue
 }
 
-/*
-asset SampleAsset identified by assetId {
-  o String assetId
-  --> SampleParticipant owner
-  o String value
-}
-
-participant SampleParticipant identified by participantId {
-  o String participantId
-  o String firstName
-  o String lastName
-}
-*/
+// Events, e.g. going to a club/adidas store
 event SampleEvent {
-  //--> SampleAsset asset
   o String oldValue
   o String newValue
 }
-
 
 /**
  * JUST FOR INITIALIZING A DEMO
