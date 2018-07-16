@@ -44,34 +44,33 @@ concept Model {
   o DateTime designedDate
   o String name
   o String designer
-}
-
-// Abstract
-abstract participant Company identified by companyId {
-  o String companyId
-  
+  o Company company
 }
 
 // The asset that we keep track on the ledger
 asset Sneaker identified by sneakerId {
   o String sneakerId
   o ShoeAttributes attributes
-  o Owner[] ownerHistory
-  o Owner currentOwner
-  o Integer pointLeader
+  o String[] ownerHistory
+  o String currentOwner
 }
 
-// An abstract participant
-abstract participant Person identified by name {
-//  o String email // optional, for later
+
+// A concept for a simple street address
+concept Address {
+  o String city optional
+  o String country
+  o String street optional
+  o String zip optional
+}
+
+// Abstract
+participant Company identified by companyId {
+  o String companyId
   o String name
-  o String lastname
-  o Double points
-}
-
-// A shoe owner is a participant
-participant Owner extends Person {
-  o String sneakerId
+  o Address address
+  o String latitude
+  o String longitude
 }
 
 // Rewards that the shoe gives to participants
@@ -86,7 +85,32 @@ event SampleEvent {
 }
 
 /**
- * JUST FOR INITIALIZING A DEMO
+ * TRANSACTIONS
  */
+abstract transaction Trans {
+ // timestamp comes for free
+}
+
+// Model designed
+transaction Design extends Trans {
+}
+// Plastic collection
+transaction MaterialCollection extends Trans {
+}
+// Manufacturing
+transaction Manufacture extends Trans {
+}
+// Sell a shoe (retail or re-sell)
+transaction SellShoe extends Trans {
+}
+// Checkpoint event (clubs, store)
+transaction CheckPoint extends Trans {
+}
+// Recycling
+transaction Recycle extends Trans {
+}
+
+
+// Just for initialization
 transaction SetupDemo {
 }
