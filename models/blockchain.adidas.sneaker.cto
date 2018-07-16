@@ -44,16 +44,7 @@ concept Model {
   o DateTime designedDate
   o String name
   o String designer
-<<<<<<< HEAD:models/blockchain.adidas.sneaker
   o Company company
-=======
-}
-
-// Abstract
-participant Company identified by companyId {
-  o String companyId
-  o String name
->>>>>>> d1753c832fe73f6bc1c31d1c637ebfca9f1bda67:models/blockchain.adidas.sneaker.cto
 }
 
 // The asset that we keep track on the ledger
@@ -73,7 +64,7 @@ concept Address {
   o String zip optional
 }
 
-// Abstract
+// Abstract Company
 participant Company identified by companyId {
   o String companyId
   o String name
@@ -96,6 +87,16 @@ event SampleEvent {
 /**
  * TRANSACTIONS
  */
+// Shoe lifecycle
+enum ShoeStatus {
+  o DESIGNED
+  o PLASTIC_COLLECTED
+  o MANUFACTURED
+  o SOLD
+  o IN_USE
+  o RECYCLED
+}
+
 abstract transaction Trans {
  // timestamp comes for free
 }
