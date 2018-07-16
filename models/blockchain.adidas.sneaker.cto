@@ -47,9 +47,9 @@ concept Model {
 }
 
 // Abstract
-abstract participant Company identified by companyId {
+participant Company identified by companyId {
   o String companyId
-  
+  o String name
 }
 
 // The asset that we keep track on the ledger
