@@ -17,7 +17,7 @@
  */
 rule EverybodyCanReadEverything {
     description: "Allow all participants read access to all resources"
-    participant: "blockchain.adidas.sneaker.Owner"
+    participant: "blockchain.adidas.sneaker.Company"
     operation: READ
     resource: "blockchain.adidas.sneaker.*"
     action: ALLOW
@@ -25,7 +25,7 @@ rule EverybodyCanReadEverything {
 
 rule EverybodyCanSubmitTransactions {
     description: "Allow all participants to submit transactions"
-    participant: "blockchain.adidas.sneaker.Owner"
+    participant: "blockchain.adidas.sneaker.Company"
     operation: CREATE
     resource: "blockchain.adidas.sneaker.ShoeReward"
     action: ALLOW
@@ -33,7 +33,7 @@ rule EverybodyCanSubmitTransactions {
 
 rule OwnerHasFullAccessToTheirAssets {
     description: "Allow all participants full access to their assets"
-    participant(p): "blockchain.adidas.sneaker.Owner"
+    participant(p): "blockchain.adidas.sneaker.Company"
     operation: ALL
     resource(r): "blockchain.adidas.sneaker.Sneaker"
     condition: (r.owner.getIdentifier() === p.getIdentifier())
