@@ -3,29 +3,6 @@
  */
 namespace org.acme.sample
 
-asset SampleAsset identified by assetId {
-  o String assetId
-  --> SampleParticipant owner
-  o String value
-}
-
-participant SampleParticipant identified by participantId {
-  o String participantId
-  o String firstName
-  o String lastName
-}
-
-transaction SampleTransaction {
-  --> SampleAsset asset
-  o String newValue
-}
-
-event SampleEvent {
-  --> SampleAsset asset
-  o String oldValue
-  o String newValue
-}
-
 // What makes up a shoe
 asset ShoeAttributes identified by attributeId {
   o String attributeId
@@ -40,8 +17,13 @@ asset ShoeAttributes identified by attributeId {
   --> Design design
 }
 
+concept ubasdf {
+  o String hello
+}
+
 // Each shoe's model
 asset Design identified by designId {
+  o ubasdf myconcept
   o String designId
   o String designedDate
   o String name
