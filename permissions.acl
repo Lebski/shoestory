@@ -1,51 +1,37 @@
-/*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 /**
  * Sample access control list.
  */
 rule EverybodyCanReadEverything {
     description: "Allow all participants read access to all resources"
-    participant: "blockchain.adidas.sneaker.Company"
+    participant: "org.acme.sample.SampleParticipant"
     operation: READ
-    resource: "blockchain.adidas.sneaker.*"
+    resource: "org.acme.sample.*"
     action: ALLOW
 }
 
 rule EverybodyCanSubmitTransactions {
     description: "Allow all participants to submit transactions"
-    participant: "blockchain.adidas.sneaker.Company"
+    participant: "org.acme.sample.SampleParticipant"
     operation: CREATE
-    resource: "blockchain.adidas.sneaker.ShoeReward"
+    resource: "org.acme.sample.SampleTransaction"
     action: ALLOW
 }
 
 rule OwnerHasFullAccessToTheirAssets {
     description: "Allow all participants full access to their assets"
-    participant(p): "blockchain.adidas.sneaker.Company"
+    participant(p): "org.acme.sample.SampleParticipant"
     operation: ALL
-    resource(r): "blockchain.adidas.sneaker.Sneaker"
+    resource(r): "org.acme.sample.SampleAsset"
     condition: (r.owner.getIdentifier() === p.getIdentifier())
     action: ALLOW
 }
 
 rule SystemACL {
-    description: "System ACL to permit all access"
-    participant: "org.hyperledger.composer.system.Participant"
-    operation: ALL
-    resource: "org.hyperledger.composer.system.**"
-    action: ALLOW
+  description:  "System ACL to permit all access"
+  participant: "org.hyperledger.composer.system.Participant"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.**"
+  action: ALLOW
 }
 
 rule NetworkAdminUser {
