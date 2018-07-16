@@ -87,6 +87,16 @@ event SampleEvent {
 /**
  * TRANSACTIONS
  */
+// Shoe lifecycle
+enum ShoeStatus {
+  o DESIGNED
+  o PLASTIC_COLLECTED
+  o MANUFACTURED
+  o SOLD
+  o IN_USE
+  o RECYCLED
+}
+
 abstract transaction Trans {
  // timestamp comes for free
 }
