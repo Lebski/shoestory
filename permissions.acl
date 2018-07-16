@@ -17,35 +17,35 @@
  */
 rule EverybodyCanReadEverything {
     description: "Allow all participants read access to all resources"
-    participant: "org.smartclothing.net.SampleParticipant"
+    participant: "blockchain.adidas.sneaker.Owner"
     operation: READ
-    resource: "org.smartclothing.net.*"
+    resource: "blockchain.adidas.sneaker.*"
     action: ALLOW
 }
 
 rule EverybodyCanSubmitTransactions {
     description: "Allow all participants to submit transactions"
-    participant: "org.smartclothing.net.SampleParticipant"
+    participant: "blockchain.adidas.sneaker.Owner"
     operation: CREATE
-    resource: "org.smartclothing.net.SampleTransaction"
+    resource: "blockchain.adidas.sneaker.ShoeReward"
     action: ALLOW
 }
 
 rule OwnerHasFullAccessToTheirAssets {
     description: "Allow all participants full access to their assets"
-    participant(p): "org.smartclothing.net.SampleParticipant"
+    participant(p): "blockchain.adidas.sneaker.Owner"
     operation: ALL
-    resource(r): "org.smartclothing.net.SampleAsset"
+    resource(r): "blockchain.adidas.sneaker.Sneaker"
     condition: (r.owner.getIdentifier() === p.getIdentifier())
     action: ALLOW
 }
 
 rule SystemACL {
-  description:  "System ACL to permit all access"
-  participant: "org.hyperledger.composer.system.Participant"
-  operation: ALL
-  resource: "org.hyperledger.composer.system.**"
-  action: ALLOW
+    description: "System ACL to permit all access"
+    participant: "org.hyperledger.composer.system.Participant"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.**"
+    action: ALLOW
 }
 
 rule NetworkAdminUser {
