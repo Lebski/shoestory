@@ -17,26 +17,43 @@ enum ShoeStatus {
   o PLASTIC_COLLECTED
   o MANUFACTURED
   o SHIPPED
+  o AT_WAREHOUSE
   o AT_EVENT
   o NO_EVENT
+  o DONATED
   o RECYCLED
 }
 
 // What makes up a shoe
 concept ShoeAttributes {
   // o DateTime creationDate
-  o Integer creationDate // Just month and year are read from NFC
+//  o String creationDate // Just month and year are read from NFC
   o String color
   o String gender
   o Integer sizeUS
   o Design design
 }
-
 // Each shoe's model
 concept Design {
-  o Integer designedDate
+  o DateTime designedDate
   o String name
   o String designer
+}
+// Checkpoints and time for a lifecycle event
+concept Lifecycle {
+  o ShoeStatus status 
+  o DateTime timestamp
+  // Optionals
+  o String lat optional
+  o String long optional  
+}
+// The asset that we keep track on the ledger
+asset Sneaker identified by sneakerId {
+  o String sneakerId
+  o ShoeAttributes attributes
+//  o Owner[] ownerHistory
+  --> Owner currentOwner
+  o Lifecycle lifecycle optional
 }
 
 
@@ -44,29 +61,12 @@ concept Design {
 abstract participant Company identified by companyId {
   o String companyId
 }
-
-// The asset that we keep track on the ledger
-asset Sneaker identified by sneakerId {
-  o String sneakerId
-  o ShoeAttributes attributes
-//  o Owner[] ownerHistory
-  --> Owner currentOwner
-//  o String currentOwner
-  o ShoeStatus status
-  o String plasticLat
-  o String plasticLong
-}
-
 // An abstract participant
 abstract participant Person identified by name {
   o String name
-  o String lastname
-//  o Double account
 }
-
 // A shoe owner is a participant
 participant Owner extends Person {
-  //o String sneakerId
 }
 
 // Rewards that the shoe gives to participants
@@ -84,18 +84,15 @@ event ShoeEvent {
 // TRANSACTIONS
 abstract transaction Trans {
   --> Sneaker sneaker
+  o String lat optional
+  o String long optional
 }
 // Create a new design
 transaction CreateDesign extends Trans{
-}
-// Ordered designed shoe
-transaction OrderShoe extends Trans{
-  o String buyer
+  o Integer plasticAmount
 }
 // Plastic collection
 transaction MaterialCollection extends Trans {
-  o String lat
-  o String long
 }
 // Manufacturing
 transaction Manufacture extends Trans {
@@ -103,10 +100,16 @@ transaction Manufacture extends Trans {
 // Send a shoe (sell retail or re-sell)
 transaction SendShoe extends Trans {
 }
+// Store sale
+transaction StoreSale extends Trans {
+}
 // Checkpoint event (clubs, store)
 transaction LoginAtLocation extends Trans {
 }
 transaction LogOutFromLocation extends Trans {
+}
+// Donate
+transaction Donate extends Trans {
 }
 // Recycling
 transaction Recycle extends Trans {
