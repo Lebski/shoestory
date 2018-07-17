@@ -3,55 +3,67 @@
  */
 namespace org.acme.sample
 
+// Duh!
+enum Gender {
+  o FEMALE
+  o MALE
+  o UNISEX
+}
+
+// Shoe lifecycle
+enum ShoeStatus {
+  o DESIGNED
+  o PLASTIC_COLLECTED
+  o MANUFACTURED
+  o SOLD
+  o AT_EVENT
+  o NO_EVENT
+  o RECYCLED
+}
+
 // What makes up a shoe
-asset ShoeAttributes identified by attributeId {
-  o String attributeId
+concept ShoeAttributes {
   o DateTime creationDate // Just month and year are read from NFC
   o String color
   o String gender
   o Integer sizeUS
+  o Design design
+  // optionals
   o Integer sizeUK optional
   o Integer sizeFR optional
   o Integer sizeJP optional
   o Integer sizeCHN optional
-  --> Design design
-}
-
-concept ubasdf {
-  o String hello
 }
 
 // Each shoe's model
-asset Design identified by designId {
-  o ubasdf myconcept
-  o String designId
+concept Design {
   o String designedDate
   o String name
   o String designer
 }
 
 
-// Abstract
+// Abstract Co.
 abstract participant Company identified by companyId {
   o String companyId
-
 }
 
 // The asset that we keep track on the ledger
 asset Sneaker identified by sneakerId {
   o String sneakerId
-  --> ShoeAttributes attributes
+  o ShoeAttributes attributes
   o Owner[] ownerHistory
   o Owner currentOwner
   o Integer pointLeader
+  o ShoeStatus status
+  --> Contract contract
 }
 
 // An abstract participant
 abstract participant Person identified by name {
-//  o String email // optional, for later
   o String name
   o String lastname
-  o Double points
+  o Double account
 }
 
 // A shoe owner is a participant
@@ -65,13 +77,45 @@ transaction ShoeReward {
 }
 
 // Events, e.g. going to a club/adidas store
-event ShoeeEvent {
+event ShoeEvent {
   o String oldValue
   o String newValue
 }
 
-/**
- * JUST FOR INITIALIZING A DEMO
- */
+
+// TRANSACTIONS
+abstract transaction Trans {
+  --> Sneaker sneaker
+}
+// Create a new design
+transaction CreateDesign extends Trans{
+}
+// Plastic collection
+transaction MaterialCollection extends Trans {
+}
+// Manufacturing
+transaction Manufacture extends Trans {
+}
+// Sell a shoe (retail or re-sell)
+transaction SellShoe extends Trans {
+  o Owner buyer
+  o Double price
+}
+// Checkpoint event (clubs, store)
+transaction LoginAtLocation extends Trans {
+}
+transaction LogOutFromLocation extends Trans {
+}
+// Recycling
+transaction Recycle extends Trans {
+}
+
+// Contract
+asset Contract identified by contractId{
+  o String contractId
+}
+
+// JUST FOR INITIALIZING A DEMO
 transaction SetupDemo {
+  o String test
 }
