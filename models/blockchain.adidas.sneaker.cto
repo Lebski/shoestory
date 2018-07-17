@@ -53,6 +53,8 @@ asset Sneaker identified by sneakerId {
   --> Owner currentOwner
 //  o String currentOwner
   o ShoeStatus status
+  o String plasticLat
+  o String plasticLong
 }
 
 // An abstract participant
@@ -92,6 +94,8 @@ transaction OrderShoe extends Trans{
 }
 // Plastic collection
 transaction MaterialCollection extends Trans {
+  o String lat
+  o String long
 }
 // Manufacturing
 transaction Manufacture extends Trans {
