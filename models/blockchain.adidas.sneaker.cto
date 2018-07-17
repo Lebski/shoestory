@@ -13,9 +13,10 @@ enum Gender {
 // Shoe lifecycle
 enum ShoeStatus {
   o DESIGNED
+  o ORDERED
   o PLASTIC_COLLECTED
   o MANUFACTURED
-  o SOLD
+  o SHIPPED
   o AT_EVENT
   o NO_EVENT
   o RECYCLED
@@ -23,21 +24,17 @@ enum ShoeStatus {
 
 // What makes up a shoe
 concept ShoeAttributes {
-  o DateTime creationDate // Just month and year are read from NFC
+  // o DateTime creationDate
+  o Integer creationDate // Just month and year are read from NFC
   o String color
   o String gender
   o Integer sizeUS
   o Design design
-  // optionals
-  o Integer sizeUK optional
-  o Integer sizeFR optional
-  o Integer sizeJP optional
-  o Integer sizeCHN optional
 }
 
 // Each shoe's model
 concept Design {
-  o String designedDate
+  o Integer designedDate
   o String name
   o String designer
 }
@@ -52,23 +49,22 @@ abstract participant Company identified by companyId {
 asset Sneaker identified by sneakerId {
   o String sneakerId
   o ShoeAttributes attributes
-  o Owner[] ownerHistory
-  o Owner currentOwner
-  o Integer pointLeader
+//  o Owner[] ownerHistory
+  --> Owner currentOwner
+//  o String currentOwner
   o ShoeStatus status
-  --> Contract contract
 }
 
 // An abstract participant
 abstract participant Person identified by name {
   o String name
   o String lastname
-  o Double account
+//  o Double account
 }
 
 // A shoe owner is a participant
 participant Owner extends Person {
-  o String sneakerId
+  //o String sneakerId
 }
 
 // Rewards that the shoe gives to participants
@@ -90,16 +86,18 @@ abstract transaction Trans {
 // Create a new design
 transaction CreateDesign extends Trans{
 }
+// Ordered designed shoe
+transaction OrderShoe extends Trans{
+  o String buyer
+}
 // Plastic collection
 transaction MaterialCollection extends Trans {
 }
 // Manufacturing
 transaction Manufacture extends Trans {
 }
-// Sell a shoe (retail or re-sell)
-transaction SellShoe extends Trans {
-  o Owner buyer
-  o Double price
+// Send a shoe (sell retail or re-sell)
+transaction SendShoe extends Trans {
 }
 // Checkpoint event (clubs, store)
 transaction LoginAtLocation extends Trans {
@@ -117,5 +115,4 @@ asset Contract identified by contractId{
 
 // JUST FOR INITIALIZING A DEMO
 transaction SetupDemo {
-  o String test
 }
