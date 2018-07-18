@@ -1,0 +1,88 @@
+<manifest alg="2" build="2018.1.0.386" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="sneakerchain.com" resolutions="1x,2x" timestamp="1531911908503">
+  <folder name="css">
+    <file name="site_global.css" crc="444006867"/>
+    <file name="untitled-2.css" crc="68463926" ref="untitled-2"/>
+    <file name="index.css" crc="521880571" ref="index"/>
+  </folder>
+  <folder name="scripts">
+    <file name="jquery-1.8.3.min.js" crc="209076791" ref="index:untitled-2"/>
+    <file name="museutils.js" crc="340535759" ref="index:untitled-2"/>
+    <file name="whatinput.js" crc="86476730" ref="index:untitled-2"/>
+    <file name="museconfig.js" crc="310584261" ref="index:untitled-2"/>
+    <file name="jquery.watch.js" crc="51536988" ref="index:untitled-2"/>
+    <file name="jquery.scrolleffects.js" crc="39568856" ref="index:untitled-2"/>
+    <file name="require.js" crc="7928878" ref="index:untitled-2"/>
+  </folder>
+  <folder name="images">
+    <file name="arrow-black.svg" crc="3785385428" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="arrow black_poster_.png" crc="99048220" ref="index"/>
+    <file name="background copy.png" crc="440935639" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="background copy_2x.png" crc="4048879858" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="adidas-shoebox-icon.png" crc="71561061" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="adidas-shoebox-icon_2x.png" crc="71561061" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="before3 2.jpg" crc="3793649776" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="before3 2_2x.jpg" crc="198303772" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="before3 3.jpg" crc="4083072459" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="before3 3_2x.jpg" crc="529384658" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="adidas-speedfactory-am4-1-696x464.jpg" crc="4089313433" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="adidas-speedfactory-am4-1-696x464_2x.jpg" crc="4146480456" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="adidas_cncpts_sid_lee_boston_10-crop-u2540.jpg" crc="391922092" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="adidas_cncpts_sid_lee_boston_10-crop-u2540_2x.jpg" crc="348819903" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="taiwan.jpg" crc="99321346" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="taiwan_2x.jpg" crc="3797955213" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="speedfactory.jpg" crc="106147064" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="speedfactory_2x.jpg" crc="3945213464" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="frankfurt am main.jpg" crc="9209788" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="frankfurt am main_2x.jpg" crc="4098121694" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="parley copy.png" crc="44227597" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="parley copy_2x.png" crc="145015207" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="addidas-logo.svg" crc="4104566034" seo="true" ref="index">
+      <caption webpage="index" alt=""/>
+    </file>
+    <file name="addidas logo_poster_.png" crc="4184209239" ref="index"/>
+  </folder>
+  <file name="index.html" crc="4167231917" seo="true" mt="1531911722252" redirect="true"/>
+  <file name="untitled-2.html" crc="317805089" seo="true" mt="1531828142689" redirect="true"/>
+</manifest>
