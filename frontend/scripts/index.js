@@ -6,7 +6,9 @@ var currentState
 
 setInterval(function() {
   getBCInfo("0000");
-}, 3000);
+}, 300);
+
+
 
 
 //document.getElementById("u1712_img").src = "none";
@@ -36,20 +38,20 @@ function getBCInfo(id) {
       var status = json.lifecycle.status;
       var timestamp = json.lifecycle.timestamp;
 
+
       newDate = new Date(timestamp);
 
-      document.getElementById("df_date").innerHTML = "Your order arrived at " + designedDate;
-      document.getElementById("df_productid").innerHTML = "Thank your for shopping with us. You ordered &quot;Sneaker:" + sneakerId + "&quot;. We'll send a confirmation to your email address."
       document.getElementById("df_productid2").innerHTML = "Sneaker " + sneakerId;
+      document.getElementById("df_productid").innerHTML = "Thank your for shopping with us. You ordered with the ID &quot;Sneaker " + sneakerId + "&quot;. We'll send a confirmation to your email address.";
       //document.getElementById("df_price").innerHTML = "";
       document.getElementById("df_size").innerHTML = sizeUS;
       document.getElementById("df_date").innerHTML = "Your order arrived at " + newDate.toISOString().slice(0, 10);
 
       switch (status) {
-        case "ORDERED":
-          if (currentState != "ORDERED") {
+        case "DESIGNED":
+          if (currentState != "DESIGNED") {
             console.log("moving to ordering");
-            currentState = "ORDERED";
+            currentState = "DESIGNED";
             goTo("orderdate");
           }
           break;
@@ -61,8 +63,8 @@ function getBCInfo(id) {
             document.getElementById("u1720_img").src = "images/before3%203_2x.jpg?crc=529384658"
             document.getElementById("df_cleanDate1").innerHTML = newDate.toISOString().slice(0, 10);
             document.getElementById("df_cleanDate2").innerHTML = newDate.toISOString().slice(0, 10);
-            document.getElementById("df_cleanTime1").innerHTML = "12:10"
-            document.getElementById("df_cleanTime2").innerHTML = "17:14"
+            document.getElementById("df_cleanTime1").innerHTML = "12:10";
+            document.getElementById("df_cleanTime2").innerHTML = "17:14";
             goTo("pickupofplastic");
           }
           break;
@@ -77,10 +79,10 @@ function getBCInfo(id) {
             goTo("manufacturing");
           }
           break;
-        case "SHIPPED":
-          if (currentState != "SHIPPED") {
-            console.log("moving to SHIPPED");
-            currentState = "SHIPPED";
+        case "AT_WAREHOUSE":
+          if (currentState != "AT_WAREHOUSE") {
+            console.log("moving to AT_WAREHOUSE");
+            currentState = "AT_WAREHOUSE";
             document.getElementById("df_orderDate").innerHTML = newDate.toISOString().slice(0, 10);
             document.getElementById("df_DHL").innerHTML = "DHL";
             document.getElementById("df_shippingAddress").innerHTML = "Mies-van-der-Rohe-Straße 6, 80807 München";
